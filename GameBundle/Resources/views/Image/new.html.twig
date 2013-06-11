@@ -1,0 +1,22 @@
+{% extends 'ERPGameBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Image creation</h1>
+
+    <form action="{{ path('image_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form,{'form_type': 'horizontal'}) }}
+	    <div class="control-group">
+	    	<div class="controls">
+	      		 <button type="submit">Create</button>
+	    	</div>
+            </div>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('image') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

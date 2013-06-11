@@ -1,0 +1,30 @@
+{% extends 'ERPGameBundle::layout.html.twig' %} 
+
+{% block body -%}
+
+<h1>Etiquetas</h1>
+
+<form action="{{ path('etiqueta') }}" method="post">
+	{{ form_enctype(form) }}
+	{{ form_widget(form) }}
+	<p>
+		<button type="submit">Formatar Endereço</button>
+	</p>
+</form>
+
+<div>
+{% if dados is defined %} 
+
+<address>
+{{ dados.nome_destinatario }} <br>
+{{ dados.endereco }} <br>
+{{ dados.cep }} <br>
+{{ dados.bairro_cidade }} 
+</address>
+
+
+
+{% endif %}
+</div>
+
+{% endblock %}

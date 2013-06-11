@@ -1,0 +1,22 @@
+{% extends 'ERPGameBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Region creation</h1>
+
+    <form action="{{ path('region_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
+		{{ form_widget(form,{'form_type': 'horizontal'}) }}
+	    <div class="control-group">
+	    	<div class="controls">
+	      		 <button type="submit">Create</button>
+	    	</div>
+  		</div>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('region') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

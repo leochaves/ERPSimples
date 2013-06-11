@@ -1,0 +1,26 @@
+console:
+    resource: "@ERPGameBundle/Controller/ConsoleController.php"
+    prefix:   /ERP
+    type:     annotation
+
+region:
+    resource: "@ERPGameBundle/Controller/RegionController.php"
+    prefix:   /ERP
+    type:     annotation
+
+game:
+    resource: "@ERPGameBundle/Controller/GameController.php"
+    prefix:   /ERP
+    type:     annotation
+
+
+image:
+    resource: "@ERPGameBundle/Controller/ImageController.php"
+    prefix:   /ERP
+    type:     annotation    
+    
+    
+etiqueta:
+    resource: "@ERPGameBundle/Controller/EtiquetaController.php"
+    prefix:   /ERP
+    type:     annotation    
