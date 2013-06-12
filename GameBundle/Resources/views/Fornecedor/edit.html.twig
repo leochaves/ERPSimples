@@ -1,0 +1,24 @@
+{% extends 'ERPGameBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="page-header">
+    <h1>Modifier un fornecedor</h1>
+</div>
+
+
+<form action="{{ path('fornecedor_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} novalidate="novalidate">
+    {{ form_widget(edit_form) }}
+    <p>
+        <button class="btn btn-primary btn-large" type="submit">Enregistrer</button>
+    </p>
+</form>
+
+	<div class="form-actions">
+        <a class="btn" href="{{ path('fornecedor') }}">
+            Retour à la liste
+        </a>
+        <form style="float:right" action="{{ path('fornecedor_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+</div>{% endblock body %}

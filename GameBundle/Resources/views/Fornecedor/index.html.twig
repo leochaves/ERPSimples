@@ -1,0 +1,28 @@
+{% extends 'ERPGameBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="page-header">
+    <h1>Liste des fornecedors</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('fornecedor_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nome }}</td>
+            <td><a class="btn btn-info" href="{{ path('fornecedor_show', { 'id': entity.id }) }}">Voir</a>
+<a class="btn btn-success" href="{{ path('fornecedor_edit', { 'id': entity.id }) }}">Modifier</a>                  </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock body %}

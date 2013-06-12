@@ -1,0 +1,16 @@
+{{ "{% extends 'ERPGameBundle::layout.html.twig' %}" }}
+
+{{ '{% block body %}' }}
+<div class="page-header">
+    <h1>Ajouter un {{ entity|lower }}</h1>
+</div>
+
+<form action="{{ "{{ path('"~ route_name_prefix ~"_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }} novalidate="novalidate">
+    {{ "{{ form_widget(form) }}" }}
+    <p>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </p>
+</form>
+{% set hide_edit, hide_delete = false, false %}
+{% include 'views/others/record_actions.html.twig' %}
+{{ '{% endblock body %}' }}

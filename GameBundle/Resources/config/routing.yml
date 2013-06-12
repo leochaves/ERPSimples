@@ -23,4 +23,9 @@ image:
 etiqueta:
     resource: "@ERPGameBundle/Controller/EtiquetaController.php"
     prefix:   /ERP
-    type:     annotation    
+    type:     annotation  
+
+fornecedor:
+    resource: "@ERPGameBundle/Controller/FornecedorController.php"
+    prefix:   /ERP
+    type:     annotation     
