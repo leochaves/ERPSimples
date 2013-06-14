@@ -2,7 +2,7 @@
 
 {{ '{% block body %}' }}
 <div class="page-header">
-    <h1>Liste des {{ entity|lower }}s</h1>
+    <h1>Lista: {{ entity|capitalize }}</h1>
 </div>
 
 <table class="table table-bordered table-striped">
@@ -10,11 +10,12 @@
         <tr>
         {%- for field, metadata in fields %}
 
-            <th>{{ field|capitalize }}</th>
+            <th{{ '{% if entities.isSorted(\'e.'~field~'\') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, \''~field|capitalize~'\', \'e.'~field~'\') }}' }}</th>
 
         {%- endfor %}
 
-            <th>Actions</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -49,5 +50,10 @@
     {{ '{% endfor %}' }}
     </tbody>
 </table>
-
+{{ '{{ knp_pagination_render(entities, null, {}, {\'alignment\': \'center\'}) }}' }}
+<div class="btn-group">
+    <a href="{{ "{{ path('"~ route_name_prefix ~"_new') }}" }}" class="btn">
+            Cadastrar novo
+    </a>
+</div> 
 {{ '{% endblock body %}' }}

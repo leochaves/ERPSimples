@@ -2,15 +2,17 @@
 
 {% block body %}
 <div class="page-header">
-    <h1>Liste des fornecedors</h1>
+    <h1>Lista: Fornecedor</h1>
 </div>
 
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Actions</th>
+            <th{% if entities.isSorted('e.id') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Id', 'e.id') }}</th>
+            <th{% if entities.isSorted('e.nome') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Nome', 'e.nome') }}</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -18,11 +20,18 @@
         <tr>
             <td><a href="{{ path('fornecedor_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.nome }}</td>
-            <td><a class="btn btn-info" href="{{ path('fornecedor_show', { 'id': entity.id }) }}">Voir</a>
-<a class="btn btn-success" href="{{ path('fornecedor_edit', { 'id': entity.id }) }}">Modifier</a>                  </td>
+            <td><div class="btn-group">
+<a class="btn" href="{{ path('fornecedor_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>
+<a class="btn" href="{{ path('fornecedor_edit', { 'id': entity.id }) }}" title="Editar"><i class="icon-edit"></i></a>   
+</div>            </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
-
+{{ knp_pagination_render(entities, null, {}, {'alignment': 'center'}) }}
+<div class="btn-group">
+    <a href="{{ path('fornecedor_new') }}" class="btn">
+            Cadastrar novo
+    </a>
+</div> 
 {% endblock body %}

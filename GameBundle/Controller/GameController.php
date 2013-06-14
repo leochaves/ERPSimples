@@ -27,15 +27,40 @@ class GameController extends Controller
      */
     public function indexAction()
     {
+        
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ERPGameBundle:Game')->findAll();
+        $dql   = "SELECT g FROM ERPGameBundle:Game g";
+        $query = $em->createQuery($dql);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('p', 1)/*page number*/,
+            5/*limit per page*/
+        );
+        
         return array(
-            'entities' => $entities,
+            'pagination' => $pagination
         );
     }
+    
+    public function listAction()
+    {
+        $em    = $this->get('doctrine.orm.entity_manager');
+        $dql   = "SELECT a FROM AcmeMainBundle:Article a";
+        $query = $em->createQuery($dql);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        // parameters to template
+        return $this->render('AcmeMainBundle:Article:list.html.twig', array('pagination' => $pagination));
+    }
     /**
      * Creates a new Game entity.
      *

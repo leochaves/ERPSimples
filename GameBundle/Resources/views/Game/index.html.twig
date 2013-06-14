@@ -1,41 +1,44 @@
 {% extends 'ERPGameBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Game list</h1>
+<div class="page-header">
+    <h1>Lista: Games</h1>
+</div>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+                {# sorting of properties based on query components #}
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'g.id') }}</th>
+                <th{% if pagination.isSorted('g.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nome', 'g.name') }}</th>
                 <th>Description</th>
-                <th>Releasedate</th>
-                <th>Actions</th>
-            </tr>
+                <th{% if pagination.isSorted('g.releaseDate') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Data Lançamento', 'g.releaseDate') }}</th>
+                <th>Ações</th>
+            </tr>        
         </thead>
         <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('game_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.description }}</td>
-                <td>{% if entity.releaseDate %}{{ entity.releaseDate|date('d/m/Y') }}{% endif %}</td>
-                <td>
-                <div class="btn-group">
-                    <a class="btn" href="{{ path('game_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>
-                    <a class="btn" href="{{ path('game_edit', { 'id': entity.id }) }}" title="Editar"><i class="icon-edit"></i></a>
-                </div>              
-                </td>
-            </tr>
+        {% for entity in pagination %}
+                <tr>
+                    <td><a href="{{ path('game_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.name }}</td>
+                    <td>{{ entity.description }}</td>
+                    <td>{% if entity.releaseDate %}{{ entity.releaseDate|date('d/m/Y') }}{% endif %}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn" href="{{ path('game_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>
+                            <a class="btn" href="{{ path('game_edit', { 'id': entity.id }) }}" title="Editar"><i class="icon-edit"></i></a>
+                        </div>              
+                    </td>
+                </tr>
         {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('game_new') }}">
-                Create a new entry
+    {{ knp_pagination_render(pagination, null, {}, {'alignment': 'center'}) }}
+
+        <div class="btn-group">
+            <a href="{{ path('game_new') }}" class="btn">
+                    Cadastrar novo
             </a>
-        </li>
-    </ul>
-    {% endblock %}
+        </div>  
+ {% endblock %}

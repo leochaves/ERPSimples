@@ -15,7 +15,7 @@
 
 	<div class="form-actions">
         <a class="btn" href="{{ path('fornecedor') }}">
-            Retour à la liste
+            Voltar para Lista
         </a>
         <form style="float:right" action="{{ path('fornecedor_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}

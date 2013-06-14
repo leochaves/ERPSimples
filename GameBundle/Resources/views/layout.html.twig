@@ -17,7 +17,13 @@
 <!-- {{ "<link rel=\"stylesheet\" href=\"{{ asset('bundles/braincraftedbootstrap/css/bootstrap.compiled.css') }}\">" }} -->
 
 {% include 'BcBootstrapBundle::_html5shiv.html.twig' %}
-
+<style>
+        #body{
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+            
+</style>
 </head>
 
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -47,8 +53,10 @@
             </div>
         </div>
 
+    <div id="body">
+        
 {% block body %}{% endblock %}
-
+    </div>
     <!-- Footer
     ================================================== -->
     <!--footer class="footer">
