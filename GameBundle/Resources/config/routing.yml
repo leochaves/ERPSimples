@@ -28,4 +28,9 @@ etiqueta:
 fornecedor:
     resource: "@ERPGameBundle/Controller/FornecedorController.php"
     prefix:   /ERP
-    type:     annotation     
+    type:     annotation 
+    
+secured:
+    resource: "@ERPGameBundle/Controller/SecuredController.php"
+    prefix:   /ERP
+    type:     annotation
