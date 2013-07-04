@@ -322,7 +322,7 @@ class Builder extends ContainerAware {
         $region->addChild('.icon-list-alt Listar Regiões', array('route' => 'region'));
         $region->addChild('.icon-plus Adicionar Região', array('route' => 'region_new'));
         
-  
+        $menu->addChild('Sair', array('route' => 'logout'));
         
        /* $dropdown->addChild('Another action', array('uri' => '#'));
         $dropdown->addChild('Something else here', array('uri' => '#'));
