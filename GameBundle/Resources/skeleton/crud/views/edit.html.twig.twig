@@ -2,17 +2,20 @@
 
 {{ '{% block body %}' }}
 <div class="page-header">
-    <h1>Modifier un {{ entity|lower }}</h1>
+    <h1>Editar: {{ entity|lower }}</h1>
 </div>
 
 
-<form action="{{ "{{ path('"~ route_name_prefix ~"_update', { 'id': entity.id }) }}" }}" method="post" {{ "{{ form_enctype(edit_form) }}" }} novalidate="novalidate">
-    {{ "{{ form_widget(edit_form) }}" }}
-    <p>
-        <button class="btn btn-primary btn-large" type="submit">Enregistrer</button>
-    </p>
+<form action="{{ "{{ path('"~ route_name_prefix ~"_update', { 'id': entity.id }) }}" }}" method="post" {{ "{{ form_enctype(edit_form) }}" }} class="form-horizontal" novalidate="novalidate">
+    {{ "{{ form_widget(edit_form,{'form_type': 'horizontal'}) }}" }}
+    <div class="control-group">
+         <div class="controls">
+                  <button type="submit" class="btn btn-primary">Editar</button>
+         </div>
+     </div>
 </form>
 
-{% set hide_edit, hide_delete = true, false %}
+{% set hide_edit = true %} 
+{% set hide_delete = true %}
 {% include 'views/others/record_actions.html.twig' %}
 {{ '{% endblock body %}' }}
