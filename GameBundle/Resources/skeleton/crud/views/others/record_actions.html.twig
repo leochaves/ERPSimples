@@ -4,13 +4,14 @@
         </a>
 {% if ('edit' in actions) and (not hide_edit) %}
         <a class="btn btn-primary" href="{{ "{{ path('"~ route_name_prefix ~"_edit', { 'id': entity.id }) }}" }}">
-            Modifier
+            Modificar
         </a>
 {% endif %}
 {% if ('delete' in actions) and (not hide_delete) %}
         <form style="float:right" action="{{ "{{ path('"~ route_name_prefix ~"_delete', { 'id': entity.id }) }}" }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
             {{ '{{ form_widget(delete_form) }}' }}
-            <button type="submit" class="btn btn-danger">Supprimer</button>
+            <button type="submit" class="btn btn-danger">Remover</button>
         </form>
 {% endif %}
 </div>

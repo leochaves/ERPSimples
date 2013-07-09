@@ -1,41 +1,37 @@
 {% extends 'ERPGameBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Console list</h1>
+{% block body %}
+<div class="page-header">
+    <h1>Lista: Console</h1>
+</div>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('console_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('console_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('console_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('console_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th{% if entities.isSorted('e.id') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Id', 'e.id') }}</th>
+            <th{% if entities.isSorted('e.name') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Name', 'e.name') }}</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('console_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.name }}</td>
+            <td><div class="btn-group">
+<a class="btn" href="{{ path('console_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>
+<a class="btn" href="{{ path('console_edit', { 'id': entity.id }) }}" title="Editar"><i class="icon-edit"></i></a>   
+</div>            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{{ knp_pagination_render(entities, null, {}, {'alignment': 'center'}) }}
+<div class="btn-group">
+    <a href="{{ path('console_new') }}" class="btn">
+            Cadastrar novo
+    </a>
+</div> 
+{% endblock body %}

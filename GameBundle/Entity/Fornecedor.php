@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="fornecedor")
  * @ORM\Entity
  */
-class Fornecedor
-{
+class Fornecedor {
+
     /**
      * @var integer
      *
@@ -28,15 +28,12 @@ class Fornecedor
      */
     private $nome;
 
-
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -46,10 +43,9 @@ class Fornecedor
      * @param string $nome
      * @return Fornecedor
      */
-    public function setNome($nome)
-    {
+    public function setNome($nome) {
         $this->nome = $nome;
-    
+
         return $this;
     }
 
@@ -58,8 +54,16 @@ class Fornecedor
      *
      * @return string 
      */
-    public function getNome()
-    {
+    public function getNome() {
         return $this->nome;
     }
+
+    /**
+     * Retorna o nome do fornecedor para montagem dos labels nas caixas de seleção.
+     * @return String
+     */
+    public function __toString() {
+        return $this->nome;
+    }
+
 }

@@ -28,8 +28,16 @@ class RegionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ERPGameBundle:Region')->findAll();
+        $dql   = "SELECT e FROM ERPGameBundle:Region e";
+        $query = $em->createQuery($dql);
 
+        $paginator  = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('e', 1)/*page number*/,
+            10/*limit per page*/
+        );
+     
         return array(
             'entities' => $entities,
         );

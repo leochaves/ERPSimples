@@ -1,0 +1,49 @@
+{% extends 'ERPGameBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="page-header">
+    <h1>Lista: Produtoitem</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th{% if entities.isSorted('e.id') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Id', 'e.id') }}</th>
+            <th{% if entities.isSorted('e.dataEntrada') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Dataentrada', 'e.dataEntrada') }}</th>
+            <th{% if entities.isSorted('e.valorEntrada') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Valorentrada', 'e.valorEntrada') }}</th>
+            <th{% if entities.isSorted('e.quantidade') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Quantidade', 'e.quantidade') }}</th>
+            <th{% if entities.isSorted('e.saldo') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Saldo', 'e.saldo') }}</th>
+            <th{% if entities.isSorted('e.flgConsolidado') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Flgconsolidado', 'e.flgConsolidado') }}</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('produtoitem_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{% if entity.dataEntrada %}{{ entity.dataEntrada|date('d/m/Y') }}{% endif %}</td>
+            <td>{{ entity.valorEntrada }}</td>
+            <td>{{ entity.quantidade }}</td>
+            <td>{{ entity.saldo }}</td>
+            <td>{{ entity.flgConsolidado }}</td>
+            <td><div class="btn-group">
+<a class="btn" href="{{ path('produtoitem_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>
+<a class="btn" href="{{ path('produtoitem_edit', { 'id': entity.id }) }}" title="Editar"><i class="icon-edit"></i></a>   
+</div>            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{{ knp_pagination_render(entities, null, {}, {'alignment': 'center'}) }}
+<div class="btn-group">
+    <a href="{{ path('produtoitem_new') }}" class="btn">
+            Cadastrar novo
+    </a>
+</div> 
+{% endblock body %}

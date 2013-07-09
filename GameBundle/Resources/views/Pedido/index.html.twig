@@ -1,0 +1,40 @@
+{% extends 'ERPGameBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="page-header">
+    <h1>Lista: Pedido</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th{% if entities.isSorted('e.id') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Id', 'e.id') }}</th>
+            <th{% if entities.isSorted('e.valor') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Valor', 'e.valor') }}</th>
+            <th{% if entities.isSorted('e.data') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Data', 'e.data') }}</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('pedido_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.valor }}</td>
+            <td>{% if entity.data %}{{ entity.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td><div class="btn-group">
+<a class="btn" href="{{ path('pedido_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>
+<a class="btn" href="{{ path('pedido_edit', { 'id': entity.id }) }}" title="Editar"><i class="icon-edit"></i></a>   
+</div>            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{{ knp_pagination_render(entities, null, {}, {'alignment': 'center'}) }}
+<div class="btn-group">
+    <a href="{{ path('pedido_new') }}" class="btn">
+            Cadastrar novo
+    </a>
+</div> 
+{% endblock body %}

@@ -321,6 +321,22 @@ class Builder extends ContainerAware {
         $region = $menu->addChild('Região');
         $region->addChild('.icon-list-alt Listar Regiões', array('route' => 'region'));
         $region->addChild('.icon-plus Adicionar Região', array('route' => 'region_new'));
+
+        $console = $menu->addChild('Cliente');
+        $console->addChild('.icon-list-alt Listar Clientes', array('route' => 'cliente'));
+        $console->addChild('.icon-plus Adicionar Cliente', array('route' => 'cliente_new'));
+        
+        $console = $menu->addChild('Pedido');
+        $console->addChild('.icon-list-alt Listar Pedidos', array('route' => 'pedido'));
+        $console->addChild('.icon-plus Adicionar Pedido', array('route' => 'pedido_new'));
+  
+        $console = $menu->addChild('Estoque');
+        $console->addChild('.icon-list-alt Listar Produtos', array('route' => 'produtoitem'));
+        $console->addChild('.icon-plus Adicionar Produto', array('route' => 'produtoitem_new'));
+     
+        $console = $menu->addChild('Fornecedor');
+        $console->addChild('.icon-list-alt Listar Fornecedores', array('route' => 'fornecedor'));
+        $console->addChild('.icon-plus Adicionar Fornecedor', array('route' => 'fornecedor_new'));        
         
         $menu->addChild('Sair', array('route' => 'logout'));
         

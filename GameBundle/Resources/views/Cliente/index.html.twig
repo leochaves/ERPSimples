@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="page-header">
-    <h1>Lista: Region</h1>
+    <h1>Lista: Cliente</h1>
 </div>
 
 <table class="table table-bordered table-striped">
@@ -10,19 +10,19 @@
         <tr>
             <th{% if entities.isSorted('e.id') %} class="sorted"{% endif %}>
                 {{ knp_pagination_sortable(entities, 'Id', 'e.id') }}</th>
-            <th{% if entities.isSorted('e.name') %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(entities, 'Name', 'e.name') }}</th>
+            <th{% if entities.isSorted('e.nome') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Nome', 'e.nome') }}</th>
             <th>Ações</th>
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('region_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.name }}</td>
+            <td><a href="{{ path('cliente_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nome }}</td>
             <td><div class="btn-group">
-<a class="btn" href="{{ path('region_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>
-<a class="btn" href="{{ path('region_edit', { 'id': entity.id }) }}" title="Editar"><i class="icon-edit"></i></a>   
+<a class="btn" href="{{ path('cliente_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>
+<a class="btn" href="{{ path('cliente_edit', { 'id': entity.id }) }}" title="Editar"><i class="icon-edit"></i></a>   
 </div>            </td>
         </tr>
     {% endfor %}
@@ -30,7 +30,7 @@
 </table>
 {{ knp_pagination_render(entities, null, {}, {'alignment': 'center'}) }}
 <div class="btn-group">
-    <a href="{{ path('region_new') }}" class="btn">
+    <a href="{{ path('cliente_new') }}" class="btn">
             Cadastrar novo
     </a>
 </div> 

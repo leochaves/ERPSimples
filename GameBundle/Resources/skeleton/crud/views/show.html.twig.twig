@@ -12,7 +12,7 @@
 
         {%- if metadata.type in ['date', 'datetime'] %}
 
-            {{ '{{ entity.'~ field|replace({'_': ''}) ~'|date(\'Y-m-d H:i:s\') }}' }}
+            {{ '{{ entity.'~ field|replace({'_': ''}) ~'|date(\'d/m/Y\') }}' }}
 
         {%- else %}
 
@@ -24,6 +24,7 @@
 
     {%- endfor %}
 </div>
-{% set hide_edit, hide_delete = true, true %}
+{% set hide_edit = false %} 
+{% set hide_delete = false %}
 {% include 'views/others/record_actions.html.twig' %}
 {{ '{% endblock body %}' }}

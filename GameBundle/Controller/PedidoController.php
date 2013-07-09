@@ -7,20 +7,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use ERP\GameBundle\Entity\Console;
-use ERP\GameBundle\Form\ConsoleType;
+use ERP\GameBundle\Entity\Pedido;
+use ERP\GameBundle\Form\PedidoType;
 
 /**
- * Console controller.
+ * Pedido controller.
  *
- * @Route("/console")
+ * @Route("/pedido")
  */
-class ConsoleController extends Controller
+class PedidoController extends Controller
 {
     /**
-     * Lists all Console entities.
+     * Lists all Pedido entities.
      *
-     * @Route("/", name="console")
+     * @Route("/", name="pedido")
      * @Method("GET")
      * @Template()
      */
@@ -28,7 +28,7 @@ class ConsoleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $dql   = "SELECT e FROM ERPGameBundle:Console e";
+        $dql   = "SELECT e FROM ERPGameBundle:Pedido e";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');
@@ -44,16 +44,16 @@ class ConsoleController extends Controller
     }
 
     /**
-     * Creates a new Console entity.
+     * Creates a new Pedido entity.
      *
-     * @Route("/", name="console_create")
+     * @Route("/", name="pedido_create")
      * @Method("POST")
-     * @Template("ERPGameBundle:Console:new.html.twig")
+     * @Template("ERPGameBundle:Pedido:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity  = new Console();
-        $form = $this->createForm(new ConsoleType(), $entity);
+        $entity  = new Pedido();
+        $form = $this->createForm(new PedidoType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -61,7 +61,7 @@ class ConsoleController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('console_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('pedido_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -71,16 +71,16 @@ class ConsoleController extends Controller
     }
 
     /**
-     * Displays a form to create a new Console entity.
+     * Displays a form to create a new Pedido entity.
      *
-     * @Route("/new", name="console_new")
+     * @Route("/new", name="pedido_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Console();
-        $form   = $this->createForm(new ConsoleType(), $entity);
+        $entity = new Pedido();
+        $form   = $this->createForm(new PedidoType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -89,9 +89,9 @@ class ConsoleController extends Controller
     }
 
     /**
-     * Finds and displays a Console entity.
+     * Finds and displays a Pedido entity.
      *
-     * @Route("/{id}", name="console_show")
+     * @Route("/{id}", name="pedido_show")
      * @Method("GET")
      * @Template()
      */
@@ -99,10 +99,10 @@ class ConsoleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ERPGameBundle:Console')->find($id);
+        $entity = $em->getRepository('ERPGameBundle:Pedido')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Console entity.');
+            throw $this->createNotFoundException('Unable to find Pedido entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -114,9 +114,9 @@ class ConsoleController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Console entity.
+     * Displays a form to edit an existing Pedido entity.
      *
-     * @Route("/{id}/edit", name="console_edit")
+     * @Route("/{id}/edit", name="pedido_edit")
      * @Method("GET")
      * @Template()
      */
@@ -124,13 +124,13 @@ class ConsoleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ERPGameBundle:Console')->find($id);
+        $entity = $em->getRepository('ERPGameBundle:Pedido')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Console entity.');
+            throw $this->createNotFoundException('Unable to find Pedido entity.');
         }
 
-        $editForm = $this->createForm(new ConsoleType(), $entity);
+        $editForm = $this->createForm(new PedidoType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -141,31 +141,31 @@ class ConsoleController extends Controller
     }
 
     /**
-     * Edits an existing Console entity.
+     * Edits an existing Pedido entity.
      *
-     * @Route("/{id}", name="console_update")
+     * @Route("/{id}", name="pedido_update")
      * @Method("PUT")
-     * @Template("ERPGameBundle:Console:edit.html.twig")
+     * @Template("ERPGameBundle:Pedido:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ERPGameBundle:Console')->find($id);
+        $entity = $em->getRepository('ERPGameBundle:Pedido')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Console entity.');
+            throw $this->createNotFoundException('Unable to find Pedido entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new ConsoleType(), $entity);
+        $editForm = $this->createForm(new PedidoType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('console_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('pedido_edit', array('id' => $id)));
         }
 
         return array(
@@ -176,9 +176,9 @@ class ConsoleController extends Controller
     }
 
     /**
-     * Deletes a Console entity.
+     * Deletes a Pedido entity.
      *
-     * @Route("/{id}", name="console_delete")
+     * @Route("/{id}", name="pedido_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -188,21 +188,21 @@ class ConsoleController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ERPGameBundle:Console')->find($id);
+            $entity = $em->getRepository('ERPGameBundle:Pedido')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Console entity.');
+                throw $this->createNotFoundException('Unable to find Pedido entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('console'));
+        return $this->redirect($this->generateUrl('pedido'));
     }
 
     /**
-     * Creates a form to delete a Console entity by id.
+     * Creates a form to delete a Pedido entity by id.
      *
      * @param mixed $id The entity id
      *

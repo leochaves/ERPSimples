@@ -12,8 +12,17 @@
          <p><strong>Nome</strong>
             {{ entity.nome }}
         </p></div>
+ 
 	<div class="form-actions">
         <a class="btn" href="{{ path('fornecedor') }}">
             Voltar para Lista
         </a>
+        <a class="btn btn-primary" href="{{ path('fornecedor_edit', { 'id': entity.id }) }}">
+            Modificar
+        </a>
+        <form style="float:right" action="{{ path('fornecedor_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">Remover</button>
+        </form>
 </div>{% endblock body %}

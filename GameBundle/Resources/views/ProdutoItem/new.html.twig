@@ -2,10 +2,10 @@
 
 {% block body %}
 <div class="page-header">
-    <h1>Cadastrar: console</h1>
+    <h1>Cadastrar: produtoitem</h1>
 </div>
 
-<form action="{{ path('console_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('produtoitem_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form,{'form_type': 'horizontal'}) }}
     <div class="control-group">
         <div class="controls">
@@ -15,7 +15,7 @@
 </form>
  
 	<div class="form-actions">
-        <a class="btn" href="{{ path('console') }}">
+        <a class="btn" href="{{ path('produtoitem') }}">
             Voltar para Lista
         </a>
 </div>{% endblock body %}

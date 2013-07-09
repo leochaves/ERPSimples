@@ -30,6 +30,21 @@ fornecedor:
     prefix:   /ERP
     type:     annotation 
     
+cliente:
+    resource: "@ERPGameBundle/Controller/ClienteController.php"
+    prefix:   /ERP
+    type:     annotation     
+
+produtoitem:
+    resource: "@ERPGameBundle/Controller/ProdutoItemController.php"
+    prefix:   /ERP
+    type:     annotation 
+    
+pedido:
+    resource: "@ERPGameBundle/Controller/PedidoController.php"
+    prefix:   /ERP
+    type:     annotation 
+    
 secured:
     resource: "@ERPGameBundle/Controller/SecuredController.php"
     prefix:   /ERP
