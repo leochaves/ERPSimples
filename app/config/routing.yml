@@ -1,0 +1,3 @@
+erp_game:
+    resource: "@ERPGameBundle/Resources/config/routing.yml"
+    prefix:   /
