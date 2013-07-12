@@ -1,10 +1,10 @@
 parameters:
     database_driver:   pdo_mysql
-    database_host:     mysql.leochav.es
+    database_host:     
     database_port:     ~
     database_name:     erpsimples
     database_user:     erpsimples
-    database_password: erpsimples 124124
+    database_password: 
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
