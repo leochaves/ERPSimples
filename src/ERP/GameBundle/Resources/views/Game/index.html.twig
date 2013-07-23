@@ -13,6 +13,8 @@
                 <th{% if pagination.isSorted('g.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nome', 'g.name') }}</th>
                 <th>Description</th>
                 <th{% if pagination.isSorted('g.releaseDate') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Data Lançamento', 'g.releaseDate') }}</th>
+                <th{% if pagination.isSorted('c.console') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Console', 'g.console') }}</th>
+                <th{% if pagination.isSorted('g.region') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Região', 'g.region') }}</th>
                 <th>Ações</th>
             </tr>        
         </thead>
@@ -23,6 +25,8 @@
                     <td>{{ entity.name }}</td>
                     <td>{{ entity.description }}</td>
                     <td>{% if entity.releaseDate %}{{ entity.releaseDate|date('d/m/Y') }}{% endif %}</td>
+                    <td>{{ entity.console }}</td>
+                    <td>{{ entity.region }}</td>
                     <td>
                         <div class="btn-group">
                             <a class="btn" href="{{ path('game_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>

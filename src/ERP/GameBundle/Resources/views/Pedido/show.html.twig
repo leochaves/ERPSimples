@@ -13,10 +13,25 @@
             {{ entity.valor }}
         </p>
          <p><strong>Data</strong>
-            {{ entity.data|date('Y-m-d H:i:s') }}
+            {{ entity.data|date('d/m/Y') }}
+        </p>
+         <p><strong>Cod_postagem</strong>
+            {{ entity.codpostagem }}
+        </p>
+         <p><strong>Flg_pago</strong>
+            {{ entity.flgpago }}
         </p></div>
+ 
 	<div class="form-actions">
         <a class="btn" href="{{ path('pedido') }}">
             Voltar para Lista
         </a>
+        <a class="btn btn-primary" href="{{ path('pedido_edit', { 'id': entity.id }) }}">
+            Modificar
+        </a>
+        <form style="float:right" action="{{ path('pedido_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">Remover</button>
+        </form>
 </div>{% endblock body %}

@@ -15,8 +15,8 @@ use ERP\GameBundle\Form\ProdutoItemType;
  *
  * @Route("/produtoitem")
  */
-class ProdutoItemController extends Controller
-{
+class ProdutoItemController extends Controller {
+
     /**
      * Lists all ProdutoItem entities.
      *
@@ -24,20 +24,17 @@ class ProdutoItemController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $dql   = "SELECT e FROM ERPGameBundle:ProdutoItem e";
+        $dql = "SELECT e FROM ERPGameBundle:ProdutoItem e";
         $query = $em->createQuery($dql);
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $entities = $paginator->paginate(
-            $query,
-            $this->get('request')->query->get('e', 1)/*page number*/,
-            10/*limit per page*/
+                $query, $this->get('request')->query->get('e', 1)/* page number */, 10/* limit per page */
         );
-     
+
         return array(
             'entities' => $entities,
         );
@@ -50,14 +47,16 @@ class ProdutoItemController extends Controller
      * @Method("POST")
      * @Template("ERPGameBundle:ProdutoItem:new.html.twig")
      */
-    public function createAction(Request $request)
-    {
-        $entity  = new ProdutoItem();
+    public function createAction(Request $request) {
+        $entity = new ProdutoItem();
         $form = $this->createForm(new ProdutoItemType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // Copy quantidade value to set a initial Saldo
+            $entity->setSaldo($entity->getQuantidade());
             $em->persist($entity);
             $em->flush();
 
@@ -66,7 +65,7 @@ class ProdutoItemController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -77,14 +76,13 @@ class ProdutoItemController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new ProdutoItem();
-        $form   = $this->createForm(new ProdutoItemType(), $entity);
+        $form = $this->createForm(new ProdutoItemType(), $entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -95,8 +93,7 @@ class ProdutoItemController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ERPGameBundle:ProdutoItem')->find($id);
@@ -108,7 +105,7 @@ class ProdutoItemController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -120,8 +117,7 @@ class ProdutoItemController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ERPGameBundle:ProdutoItem')->find($id);
@@ -134,8 +130,8 @@ class ProdutoItemController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -147,8 +143,7 @@ class ProdutoItemController extends Controller
      * @Method("PUT")
      * @Template("ERPGameBundle:ProdutoItem:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ERPGameBundle:ProdutoItem')->find($id);
@@ -169,8 +164,8 @@ class ProdutoItemController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -181,8 +176,7 @@ class ProdutoItemController extends Controller
      * @Route("/{id}", name="produtoitem_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
@@ -208,11 +202,11 @@ class ProdutoItemController extends Controller
      *
      * @return Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
+                        ->add('id', 'hidden')
+                        ->getForm()
         ;
     }
+
 }

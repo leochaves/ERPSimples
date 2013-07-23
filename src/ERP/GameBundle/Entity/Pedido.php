@@ -36,6 +36,20 @@ class Pedido
     private $data;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="cod_postagem", type="string", length=13, nullable=true)
+     */
+    private $cod_postagem;
+  
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flg_pago", type="string", length=1, nullable=false)
+     */
+    private $flg_pago;    
+    
+    /**
      * @var \Cliente
      *
      * @ORM\ManyToOne(targetEntity="Cliente")
@@ -157,5 +171,74 @@ class Pedido
     public function getGame()
     {
         return $this->game;
+    }
+
+    /**
+     * Set nome
+     *
+     * @param string $nome
+     * @return Pedido
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+
+        return $this;
+    }
+
+    /**
+     * Get nome
+     *
+     * @return string 
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * Set flg_pago
+     *
+     * @param string $flgPago
+     * @return Pedido
+     */
+    public function setFlgPago($flgPago)
+    {
+        $this->flg_pago = $flgPago;
+
+        return $this;
+    }
+
+    /**
+     * Get flg_pago
+     *
+     * @return string 
+     */
+    public function getFlgPago()
+    {
+        return $this->flg_pago;
+    }
+
+    /**
+     * Set cod_postagem
+     *
+     * @param string $codPostagem
+     * @return Pedido
+     */
+    public function setCodPostagem($codPostagem)
+    {
+        $this->cod_postagem = $codPostagem;
+
+        return $this;
+    }
+
+    /**
+     * Get cod_postagem
+     *
+     * @return string 
+     */
+    public function getCodPostagem()
+    {
+        return $this->cod_postagem;
     }
 }

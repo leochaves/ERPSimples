@@ -12,6 +12,14 @@
                 {{ knp_pagination_sortable(entities, 'Id', 'e.id') }}</th>
             <th{% if entities.isSorted('e.nome') %} class="sorted"{% endif %}>
                 {{ knp_pagination_sortable(entities, 'Nome', 'e.nome') }}</th>
+            <th{% if entities.isSorted('e.apelido') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Apelido', 'e.apelido') }}</th>
+            <th{% if entities.isSorted('e.telefone') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Telefone', 'e.telefone') }}</th>
+            <th{% if entities.isSorted('e.email') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Email', 'e.email') }}</th>
+            <th{% if entities.isSorted('e.endereco') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(entities, 'Endereco', 'e.endereco') }}</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -20,6 +28,10 @@
         <tr>
             <td><a href="{{ path('cliente_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.nome }}</td>
+            <td>{{ entity.apelido }}</td>
+            <td>{{ entity.telefone }}</td>
+            <td>{{ entity.email }}</td>
+            <td>{{ entity.endereco }}</td>
             <td><div class="btn-group">
 <a class="btn" href="{{ path('cliente_show', { 'id': entity.id }) }}" title="Visualizar"><i class="icon-eye-open"></i></a>
 <a class="btn" href="{{ path('cliente_edit', { 'id': entity.id }) }}" title="Editar"><i class="icon-edit"></i></a>   

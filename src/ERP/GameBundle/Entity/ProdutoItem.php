@@ -54,7 +54,7 @@ class ProdutoItem
      *
      * @ORM\Column(name="flg_consolidado", type="string", length=1, nullable=false)
      */
-    private $flgConsolidado;
+    private $flgConsolidado = 'N';
 
     /**
      * @var \Fornecedor

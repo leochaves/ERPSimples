@@ -18,8 +18,8 @@ class ProdutoItemType extends AbstractType {
                     'years' => range($year, 1980)))
                 ->add('valorEntrada','money',array('currency'=> false))
                 ->add('quantidade')
-                ->add('saldo')
-                ->add('flgConsolidado')
+                //->add('saldo')
+                //->add('flgConsolidado')
                 ->add('fornecedor')
                 ->add('game')
         ;

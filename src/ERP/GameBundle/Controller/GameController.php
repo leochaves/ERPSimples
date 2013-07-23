@@ -30,7 +30,7 @@ class GameController extends Controller
         
         $em = $this->getDoctrine()->getManager();
 
-        $dql   = "SELECT g FROM ERPGameBundle:Game g";
+        $dql   = "SELECT g,c FROM ERPGameBundle:Game g JOIN g.console c";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');

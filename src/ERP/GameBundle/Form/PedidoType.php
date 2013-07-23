@@ -13,6 +13,8 @@ class PedidoType extends AbstractType
         $builder
             ->add('valor')
             ->add('data')
+            ->add('cod_postagem')
+            ->add('flg_pago')
             ->add('cliente')
             ->add('game')
         ;
