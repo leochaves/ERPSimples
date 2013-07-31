@@ -41,6 +41,13 @@ class Pedido
      * @ORM\Column(name="cod_postagem", type="string", length=13, nullable=true)
      */
     private $cod_postagem;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custo_postagem", type="decimal", nullable=true)
+     */
+    private $custo_postagem;    
   
     /**
      * @var string
@@ -104,6 +111,29 @@ class Pedido
         return $this->valor;
     }
 
+    /**
+     * Set valor
+     *
+     * @param decimal $custo_postagem
+     * @return Pedido
+     */
+    public function setCustoPostagem($custo_postagem)
+    {
+        $this->valor = $custo_postagem;
+    
+        return $this;
+    }
+
+    /**
+     * Get valor
+     *
+     * @return decimal 
+     */
+    public function getCustoPostagem()
+    {
+        return $this->custo_postagem;
+    }    
+    
     /**
      * Set data
      *

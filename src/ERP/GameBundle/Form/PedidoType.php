@@ -11,10 +11,13 @@ class PedidoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('valor')
+            ->add('valor', 'money')
             ->add('data')
             ->add('cod_postagem')
-            ->add('flg_pago')
+            ->add('custo_postagem', 'money')    
+            ->add('flg_pago','choice', array(
+                'choices'   => array('empty_value' => '','P' => 'Pago', 'N' => 'Não pago')
+                ))
             ->add('cliente')
             ->add('game')
         ;

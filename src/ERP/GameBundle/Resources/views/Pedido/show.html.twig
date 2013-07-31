@@ -10,7 +10,7 @@
             {{ entity.id }}
         </p>
          <p><strong>Valor</strong>
-            {{ entity.valor }}
+            {{ entity.valor|number_format(2, '.', ',') }}
         </p>
          <p><strong>Data</strong>
             {{ entity.data|date('d/m/Y') }}
